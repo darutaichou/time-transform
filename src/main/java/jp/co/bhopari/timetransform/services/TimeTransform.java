@@ -8,7 +8,7 @@ package jp.co.bhopari.timetransform.services;
 
 public interface TimeTransform {
 
-	// 計算
+	// 変換
 
 	/**
 	 *
