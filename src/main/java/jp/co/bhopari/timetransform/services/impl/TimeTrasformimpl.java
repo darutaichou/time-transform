@@ -1,13 +1,38 @@
 package jp.co.bhopari.timetransform.services.impl;
 
+import org.springframework.stereotype.Service;
+
 import jp.co.bhopari.timetransform.services.TimeTransform;
 
+/**
+*
+* @author adgjm
+* 何時間何分を何分に変換する機能を提供するサービス
+*/
+
+//実装したクラス
+@Service
 public class TimeTrasformimpl implements TimeTransform {
+
+	//数値入力値ボックスhourにそれぞれ入力できる範囲の最大値と最小値
+	private static final int HOUR_MAX = 99;
+	private static final int HOUR_MIN = 0;
 
 	@Override
 	public int transformTime(int hour, int minute) throws IllegalArgumentException {
-		// TODO 自動生成されたメソッド・スタブ
-		return 0;
+
+		//入力値hour入力チェック
+		if (hour < HOUR_MIN || hour > HOUR_MAX) {
+			throw new IllegalArgumentException();
+		}
+
+		//入力値hourを分表記に変換
+		int transformdHour = hour*60;
+
+		//加算
+		int result = transformdHour + minute;
+		return result;
+
 	}
 
 }
