@@ -1,8 +1,11 @@
 package jp.co.bhopari.timetransform;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.Test;
 
 import jp.co.bhopari.timetransform.services.impl.TimeTransformServiceImpl;
+
 
 
 public class TimeTransformServiceTest {
@@ -13,12 +16,17 @@ public class TimeTransformServiceTest {
 	//入力値minuteを定数化
 	private static final int ZERO_MINUTE = 0;
 
-	// 入力値hourが0未満の場合の境界値テスト
-	@Test(expected = IllegalArgumentException.class)
-	public void hourCheckTest() {
+	//入力値hourが0未満の時、IllegalArgumentExceptionが発生すれば成功
+	//入力値hourが0未満の境界値のテスト
+	@Test
+	public void 入力値hourが0未満境界値Test() {
 
-		//入力値hourを-1にして時間表記変換メソッドを呼び出す
-		hourTestInstance.transformTime(-1, ZERO_MINUTE);
+		//入力値hourを-1にして時間表記変換メソッドを呼び出し、IllegalArgumentExceptionが発生することを確認
+		assertThrows(IllegalArgumentException.class, () -> hourTestInstance.transformTime(-1, ZERO_MINUTE));
 
 	}
+
+	//入力値hourが0以上99未満の時、例外が発生しなければ成功
+	//入力値hourが0以上の境界値のテスト
+
 }
