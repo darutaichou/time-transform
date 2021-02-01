@@ -6,6 +6,7 @@ package jp.co.bhopari.timetransform.services;
  * 何時間何分を何分に変換する機能を提供するサービス
  */
 
+
 public interface TimeTransform {
 
 	// 変換
