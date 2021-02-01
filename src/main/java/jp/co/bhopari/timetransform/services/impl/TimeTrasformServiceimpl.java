@@ -2,7 +2,7 @@ package jp.co.bhopari.timetransform.services.impl;
 
 import org.springframework.stereotype.Service;
 
-import jp.co.bhopari.timetransform.services.TimeTransform;
+import jp.co.bhopari.timetransform.services.TimeTransformService;
 
 /**
 *
@@ -12,7 +12,7 @@ import jp.co.bhopari.timetransform.services.TimeTransform;
 
 //実装したクラス
 @Service
-public class TimeTrasformimpl implements TimeTransform {
+public class TimeTrasformServiceimpl implements TimeTransformService {
 
 	//数値入力値ボックスhourにそれぞれ入力できる範囲の最大値と最小値
 	private static final int HOUR_MAX = 99;
