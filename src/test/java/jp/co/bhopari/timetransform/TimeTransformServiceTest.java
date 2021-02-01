@@ -13,9 +13,6 @@ public class TimeTransformServiceTest {
 	//サービスクラスのインスタンスを生成
 	TimeTransformServiceImpl hourTestInstance = new TimeTransformServiceImpl();
 
-	//入力値minuteを定数化
-	private static final int ZERO_MINUTE = 0;
-
 
 
 	//入力値hourが0未満の時、IllegalArgumentExceptionが発生すれば成功
@@ -24,7 +21,7 @@ public class TimeTransformServiceTest {
 	public void 入力値hourが0未満境界値テスト() {
 
 		//入力値hourを-1にして時間表記変換メソッドを呼び出し、IllegalArgumentExceptionが発生することを確認
-		assertThrows(IllegalArgumentException.class, () -> hourTestInstance.transformTime(-1, ZERO_MINUTE));
+		assertThrows(IllegalArgumentException.class, () -> hourTestInstance.transformTime(-1, 0));
 
 	}
 
@@ -34,7 +31,7 @@ public class TimeTransformServiceTest {
 	public void 入力値hourが0以上99以下_0前後境界値テスト() {
 
 		//入力値hourを0にして時間表記変換メソッドを呼び出し、IllegalArgumentExceptionが発生しないことを確認
-		assertDoesNotThrow(() -> hourTestInstance.transformTime(0, ZERO_MINUTE));
+		assertDoesNotThrow(() -> hourTestInstance.transformTime(0, 0));
 
 	}
 
@@ -44,7 +41,7 @@ public class TimeTransformServiceTest {
 	public void 入力値hourが0以上99以下_99前後境界値テスト() {
 
 		//入力値hourを99にして時間表記変換メソッドを呼び出し、IllegalArgumentExceptionが発生しないことを確認
-		assertDoesNotThrow(() -> hourTestInstance.transformTime(99, ZERO_MINUTE));
+		assertDoesNotThrow(() -> hourTestInstance.transformTime(99, 0));
 
 	}
 
@@ -54,7 +51,7 @@ public class TimeTransformServiceTest {
 	public void 入力値hourが100以上境界値テスト() {
 
 		//入力値hourを100にして時間表記変換メソッドを呼び出し、IllegalArgumentExceptionが発生することを確認
-		assertThrows(IllegalArgumentException.class, () -> hourTestInstance.transformTime(100, ZERO_MINUTE));
+		assertThrows(IllegalArgumentException.class, () -> hourTestInstance.transformTime(100, 0));
 
 	}
 
