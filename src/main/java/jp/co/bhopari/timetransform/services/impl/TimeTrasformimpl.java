@@ -27,10 +27,10 @@ public class TimeTrasformimpl implements TimeTransform {
 		}
 
 		//入力値hourを分表記に変換
-		int transformdHour = hour*60;
+		int transformedHour = hour*60;
 
 		//加算
-		int result = transformdHour + minute;
+		int result = transformedHour + minute;
 		return result;
 
 	}
