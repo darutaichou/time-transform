@@ -12,7 +12,7 @@ import jp.co.bhopari.timetransform.services.TimeTransformService;
 
 //実装したクラス
 @Service
-public class TimeTrasformServiceimpl implements TimeTransformService {
+public class TimeTransformServiceImpl implements TimeTransformService {
 
 	//数値入力値ボックスhourにそれぞれ入力できる範囲の最大値と最小値
 	private static final int HOUR_MAX = 99;
