@@ -13,11 +13,11 @@ import jp.co.bhopari.timetransform.services.TimeTransformService;
 @Controller
 public class TimeTransformController {
 
+	//TimeTransformService型のtimeTransformServiceを定義
 	@Autowired
 	private TimeTransformService timeTransformService;
 
-	//エラーメッセージ
-	String errorMessage;
+	private static final String SERVLET_NAME = "/timetransform";
 
 	//時間表記変換結果
 	String timeTransformResult;
@@ -26,14 +26,14 @@ public class TimeTransformController {
 	int hour = 0;
 	int minute = 0;
 
-	@GetMapping("/")
+	@GetMapping(path = SERVLET_NAME)
 	public String transform(@ModelAttribute("hour")String inputHour, @ModelAttribute("minute")String inputMinute, Model model) {
 
 		//入力値hour入力チェック
 		//入力値hourを整数型にする
-		if (inputHour == "") {
+		if (inputHour.equals("")) {
 			//未入力の場合エラーメッセージをViewに返す
-			model.addAttribute(errorMessage, "エラー：左側のボックスに値を入力してください。");
+			model.addAttribute("errorMessage", "エラー：左側のボックスに値を入力してください。");
 			return TimeTransform;
 		}
 
@@ -41,14 +41,21 @@ public class TimeTransformController {
 		try {
 			hour = Integer.parseInt(inputHour);
 		} catch (NumberFormatException e) {
-			model.addAttribute(errorMessage, "エラー：左側のボックスに整数を入力してください。");
+			model.addAttribute("errorMessage", "エラー：左側のボックスに整数を入力してください。");
 			return TimeTransform;
 		}
 
 		//入力値minuteを整数型にする
 		minute = Integer.parseInt(inputMinute);
 
-		model.addAttribute(timeTransformResult, timeTransformService.transformTime(hour,minute));
-		return TimeTransform;
+		//主処理
+		//時間表記変換呼び出し
+		try {
+			model.addAttribute(timeTransformResult, timeTransformService.transformTime(hour,minute));
+		} catch (IllegalArgumentException e) {
+			model.addAttribute("errorMessage", "エラー：左側のボックスに0から99までの値を入力してください。");
+		}
+
+			return TimeTransform;
 	}
 }
