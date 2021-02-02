@@ -1,0 +1,54 @@
+package jp.co.bhopari.timetransform.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import jp.co.bhopari.timetransform.services.TimeTransformService;
+
+//時間表記変換Webアプリコントローラー
+
+@Controller
+public class TimeTransformController {
+
+	@Autowired
+	private TimeTransformService timeTransformService;
+
+	//エラーメッセージ
+	String errorMessage;
+
+	//時間表記変換結果
+	String timeTransformResult;
+
+	//入力値hour,minuteを格納する変数
+	int hour = 0;
+	int minute = 0;
+
+	@GetMapping("/")
+	public String transform(@ModelAttribute("hour")String inputHour, @ModelAttribute("minute")String inputMinute, Model model) {
+
+		//入力値hour入力チェック
+		//入力値hourを整数型にする
+		if (inputHour == "") {
+			//未入力の場合エラーメッセージをViewに返す
+			model.addAttribute(errorMessage, "エラー：左側のボックスに値を入力してください。");
+			return TimeTransform;
+		}
+
+		//入力値hour整数値チェック
+		try {
+			hour = Integer.parseInt(inputHour);
+		} catch (NumberFormatException e) {
+			model.addAttribute(errorMessage, "エラー：左側のボックスに整数を入力してください。");
+			return TimeTransform;
+		}
+
+		//入力値minuteを整数型にする
+		minute = Integer.parseInt(inputMinute);
+
+		model.addAttribute(timeTransformResult, timeTransformService.transformTime(hour,minute));
+		return TimeTransform;
+	}
+}
