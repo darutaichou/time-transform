@@ -31,9 +31,9 @@ public class TimeTransformController {
 	public String showInitialScreen(){
 		return TimeTransform;
 	}
-	
 
-	@GetMapping(path = SERVLET_NAME param = "do")
+
+	@GetMapping(path = SERVLET_NAME, params = "action=do")
 	public String transform(@ModelAttribute("hour")String inputHour, @ModelAttribute("minute")String inputMinute, Model model) {
 
 		//入力値hour入力チェック
