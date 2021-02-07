@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.bhopari.timetransform.services.TimeTransformService;
 
@@ -27,13 +28,13 @@ public class TimeTransformController {
 	int minute = 0;
 
 	//初期画面
-	@GetMapping(path = SERVLET_NAME)
+	@RequestMapping(path = SERVLET_NAME)
 	public String showInitialScreen(){
-		return TimeTransform;
+		return "TimeTransform";
 	}
 
 
-	@GetMapping(path = SERVLET_NAME, params = "action=do")
+	@GetMapping(path = SERVLET_NAME, params = "name=do")
 	public String transform(@ModelAttribute("hour")String inputHour, @ModelAttribute("minute")String inputMinute, Model model) {
 
 		//入力値hour入力チェック
@@ -41,7 +42,7 @@ public class TimeTransformController {
 		if (inputHour.equals("")) {
 			//未入力の場合エラーメッセージをViewに返す
 			model.addAttribute("errorMessage", "エラー：左側のボックスに値を入力してください。");
-			return TimeTransform;
+			return "TimeTransform";
 		}
 
 		//入力値hour整数値チェック
@@ -49,7 +50,7 @@ public class TimeTransformController {
 			hour = Integer.parseInt(inputHour);
 		} catch (NumberFormatException e) {
 			model.addAttribute("errorMessage", "エラー：左側のボックスに整数を入力してください。");
-			return TimeTransform;
+			return "TimeTransform";
 		}
 
 		//入力値minuteを整数型にする
@@ -63,6 +64,6 @@ public class TimeTransformController {
 			model.addAttribute("errorMessage", "エラー：左側のボックスに0から99までの値を入力してください。");
 		}
 
-			return TimeTransform;
+			return "TimeTransform";
 	}
 }
