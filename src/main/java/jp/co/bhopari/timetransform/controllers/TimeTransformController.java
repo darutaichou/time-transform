@@ -24,8 +24,8 @@ public class TimeTransformController {
 	String timeTransformResult;
 
 	//入力値hour,minuteを格納する変数
-	int hour = 0;
-	int minute = 0;
+	int hour;
+	int minute;
 
 	//初期画面
 	@RequestMapping(path = SERVLET_NAME)
@@ -60,7 +60,10 @@ public class TimeTransformController {
 		//時間表記変換呼び出し
 		try {
 			int result = timeTransformService.transformTime(hour,minute);
-			model.addAttribute(timeTransformResult, result);
+			String TransformResult = String.valueOf(result);
+			model.addAttribute("timeTransformResult", TransformResult);
+
+		//hourが範囲外の時の例外
 		} catch (IllegalArgumentException e) {
 			model.addAttribute("errorMessage", "エラー：左側のボックスに0から99までの値を入力してください。");
 		}

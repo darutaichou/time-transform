@@ -31,7 +31,7 @@ public class TimeTransformServiceTest {
 	}
 
 	//テストケース②
-	//入力値hourが0以上99未満の時、IllegalArgumentExceptionが発生しなければ成功
+	//入力値hourが0以上99未満の時、例外が発生しなければ成功
 	//入力値hourが0以上の境界値のテスト
 	@Test
 	public void 入力値hourが0以上99以下_0前後境界値テスト() {
@@ -42,7 +42,7 @@ public class TimeTransformServiceTest {
 	}
 
 	//テストケース③
-	//入力値hourが0以上99未満の時、IllegalArgumentExceptionが発生しなければ成功
+	//入力値hourが0以上99未満の時、例外が発生しなければ成功
 	//入力値hourが99以下の境界値のテスト
 	@Test
 	public void 入力値hourが0以上99以下_99前後境界値テスト() {
