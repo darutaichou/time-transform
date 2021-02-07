@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="utf-8">
@@ -20,6 +20,38 @@
     integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
   <meta name="theme-color" content="#fafafa">
+  <style>
+    .formBalloon {
+      padding-bottom: 13px;
+      display: block;
+    }
+
+    .formBalloon .formBalloonContent {
+      width: 10px;
+      height: 25px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #101177;
+      left: 20px;
+    }
+
+    .formBalloon .formBalloonArrow {
+      border: 15px solid transparent;
+      border-top: 15px solid #101177;
+      margin-left: auto;
+      margin-right: auto;
+      height: 0;
+      width: 0;
+      z-index: 1;
+    }
+
+    .balloonMsg {
+      padding-bottom: 1px;
+      display: block;
+      line-height: 1px;
+      text-indent: 0;
+    }
+  </style>
 </head>
 
 <body>
@@ -28,20 +60,24 @@
     <div align="center" style="margin-bottom:10px">※「～時間」は0から99まで入力可能です。</div>
     <form action="/" method="get" name="do">
       <div align="center">
-        <input type="text" style="width:60px; height:35px; font-size:25px">
+        <input type="text" style="width:60px; height:35px; font-size:20px">
         <span style="font-size:25px; margin:5px; vertical-align:sub"> 時間 </span>
-        <select  name="minute" id="minute" style="width:60px; height:40px; font-size:25px"></select>
-          <script>
-            let minute = document.getElementById('minute');
-            document.createElement('option')
-            for(let i = 0; i <= 59; i++){
-              let option = document.createElement('option');
-              option.setAttribute('value', i);
-              option.innerHTML = i;
-              minute.appendChild(option);
-            }
-          </script>
+        <select name="minute" id="minute" style="width:60px; height:40px; font-size:20px"></select>
+        <script>
+          let minute = document.getElementById('minute');
+          document.createElement('option')
+          for (let i = 0; i <= 59; i++) {
+            let option = document.createElement('option');
+            option.setAttribute('value', i);
+            option.innerHTML = i;
+            minute.appendChild(option);
+          }
+        </script>
         <span style="font-size:25px; margin:5px; vertical-align:sub">分</span>
+      </div>
+        <
+      <div>
+
       </div>
     </form>
   </div>
