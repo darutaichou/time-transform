@@ -43,9 +43,9 @@
 <body>
   <h1 align="center">時間表記変換</h1>
   <div align="center" style="margin-bottom:10px">※「～時間」は0から99まで入力可能です。</div>
-  <form action="/timetransform" method="get" name="do">
+  <form action="/timetransform" method="get">
     <div align="center">
-      <input type="text" th:value="${hour}" style="width:60px; height:35px; font-size:20px">
+      <input type="text" name="hour" th:value="${hour}" style="width:60px; height:35px; font-size:20px">
       <span style="font-size:25px; margin:5px; vertical-align:sub"> 時間 </span>
       <select name="minute" id="minute" th:value="${minute}" style="width:60px; height:40px; font-size:20px"></select>
       <script>
@@ -60,18 +60,18 @@
       </script>
       <span style="font-size:25px; margin:5px; vertical-align:sub">分</span>
     </div>
-    <div th:if="${timeTransformResult eq null}">
+    <div th:if="${timeTransformResult = null}">
       <p align="center" style="margin: 37px 0;"></p>
     </div>
-    <div th:if="${timeTransformResult}" class="formBalloon2"
+    <div th:if="${timeTransformResult != null}" class="formBalloon2"
       style="margin-right:auto; margin-left:auto; z-index: 2; display:block; padding-bottom: 20px; width:10px; margin-top:15px; height:12px;background: #101177;">
     </div>
     <div align="center">
-      <input type="submit" value="変換" style="width:60px; height:40px; font-size:20px; ">
+      <input type="submit" value="変換" name="do" style="width:60px; height:40px; font-size:20px; ">
     </div>
   </form>
   <p align="center" th:text="${errorMessage}" style="color:red; font-size: 25px;"></p>
-  <div th:if="${timeTransformResult}">
+  <div th:if="${timeTransformResult != null}">
     <div class="formBalloon" style="margin-right:auto; margin-left:auto; z-index: 2; line-height:0;">
       <div class="formBalloonContent"></div>
       <div class="formBalloonArrow"></div>

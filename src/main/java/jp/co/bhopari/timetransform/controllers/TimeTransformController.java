@@ -34,7 +34,7 @@ public class TimeTransformController {
 	}
 
 
-	@GetMapping(path = SERVLET_NAME, params = "name=do")
+	@GetMapping(path = SERVLET_NAME, params = "do")
 	public String transform(@ModelAttribute("hour")String inputHour, @ModelAttribute("minute")String inputMinute, Model model) {
 
 		//入力値hour入力チェック
@@ -59,7 +59,8 @@ public class TimeTransformController {
 		//主処理
 		//時間表記変換呼び出し
 		try {
-			model.addAttribute(timeTransformResult, timeTransformService.transformTime(hour,minute));
+			int result = timeTransformService.transformTime(hour,minute);
+			model.addAttribute(timeTransformResult, result);
 		} catch (IllegalArgumentException e) {
 			model.addAttribute("errorMessage", "エラー：左側のボックスに0から99までの値を入力してください。");
 		}
