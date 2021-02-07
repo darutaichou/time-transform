@@ -26,7 +26,14 @@ public class TimeTransformController {
 	int hour = 0;
 	int minute = 0;
 
+	//初期画面
 	@GetMapping(path = SERVLET_NAME)
+	public String showInitialScreen(){
+		return TimeTransform;
+	}
+	
+
+	@GetMapping(path = SERVLET_NAME param = "do")
 	public String transform(@ModelAttribute("hour")String inputHour, @ModelAttribute("minute")String inputMinute, Model model) {
 
 		//入力値hour入力チェック
