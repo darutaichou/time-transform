@@ -32,13 +32,13 @@
         <span style="font-size:25px; margin:5px; vertical-align:sub"> 時間 </span>
         <select  name="minute" id="minute" style="width:60px; height:40px; font-size:25px"></select>
           <script>
-            let month = document.getElementById('minute');
+            let minute = document.getElementById('minute');
             document.createElement('option')
             for(let i = 0; i <= 59; i++){
               let option = document.createElement('option');
               option.setAttribute('value', i);
               option.innerHTML = i;
-              minute.appendChile(option);
+              minute.appendChild(option);
             }
           </script>
         <span style="font-size:25px; margin:5px; vertical-align:sub">分</span>
