@@ -60,7 +60,7 @@
       </script>
       <span style="font-size:25px; margin:5px; vertical-align:sub">分</span>
     </div>
-    <div th:if="${timeTransformResult = null}">
+    <div th:if="${timeTransformResult}"></div>
       <p align="center" style="margin: 37px 0;"></p>
     </div>
     <div th:if="${timeTransformResult != null}" class="formBalloon2"
@@ -78,8 +78,8 @@
     </div>
     <div align="center" style="width:150px; font-size:20px;">変換結果</div>
     <div style="width:150px;">
-      <span th:text="${timeTransformResult}" style="font-size:35px">
-        <span style="font-size:30px">分
+      <span th:text="${timeTransformResult}" style="font-size:35px"></span>
+      <span style="font-size:30px">分</span>
     </div>
   </div>
 </body>
