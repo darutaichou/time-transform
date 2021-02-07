@@ -41,36 +41,37 @@
 </head>
 
 <body>
-  <div class="container">
-    <h1 align="center">時間表記変換</h1>
-    <div align="center" style="margin-bottom:10px">※「～時間」は0から99まで入力可能です。</div>
-    <form action="/" method="get" name="do">
-      <div align="center">
-        <input type="text" style="width:60px; height:35px; font-size:20px">
-        <span style="font-size:25px; margin:5px; vertical-align:sub"> 時間 </span>
-        <select name="minute" id="minute" style="width:60px; height:40px; font-size:20px"></select>
-        <script>
-          let minute = document.getElementById('minute');
-          document.createElement('option')
-          for (let i = 0; i <= 59; i++) {
-            let option = document.createElement('option');
-            option.setAttribute('value', i);
-            option.innerHTML = i;
-            minute.appendChild(option);
-          }
-        </script>
-        <span style="font-size:25px; margin:5px; vertical-align:sub">分</span>
+  <h1 align="center">時間表記変換</h1>
+  <div align="center" style="margin-bottom:10px">※「～時間」は0から99まで入力可能です。</div>
+  <form action="/timetransform" method="get" name="do">
+    <div align="center">
+      <input type="text" style="width:60px; height:35px; font-size:20px">
+      <span style="font-size:25px; margin:5px; vertical-align:sub"> 時間 </span>
+      <select name="minute" id="minute" style="width:60px; height:40px; font-size:20px"></select>
+      <script>
+        let minute = document.getElementById('minute');
+        document.createElement('option')
+        for (let i = 0; i <= 59; i++) {
+          let option = document.createElement('option');
+          option.setAttribute('value', i);
+          option.innerHTML = i;
+          minute.appendChild(option);
+        }
+      </script>
+      <span style="font-size:25px; margin:5px; vertical-align:sub">分</span>
+    </div>
+    <div th:if="${timeTransformResult eq null}">
+      <p align="center" style="margin: 37px 0;"></p>
+    </div>
+    <div th:if="${timeTransformResult}">
+      <div class="formBalloon2"
+        style="margin-right:auto; margin-left:auto; z-index: 2; display:block; padding-bottom: 20px; width:10px; margin-top:15px; height:12px;background: #101177;">
       </div>
-      <div th:if="${timeTransformResult}">
-        <span class="formBalloon2"
-          style="margin-right:auto; margin-left:auto; z-index: 2; display:block; padding-bottom: 20px; width:10px; margin-top:15px; height:12px;background: #101177;">
-      </span>
-      </div>
-      <div align="center">
-        <input type="submit" value="変換" style="width:60px; height:40px; font-size:20px; ">
-      </div>
-    </form>
-  </div>
+    </div>
+    <div align="center">
+      <input type="submit" value="変換" style="width:60px; height:40px; font-size:20px; ">
+    </div>
+  </form>
 </body>
 
 </html>
