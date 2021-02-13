@@ -60,13 +60,13 @@
       <!-- プルダウン表示のためのJavaScript -->
       <script>
         let minute = document.getElementById('minute');
-        document.createElement('option')
+        let option = document.createElement('option')
         for (let i = 0; i <= 59; i++) {
-          let option = document.createElement('option');
           option.setAttribute('value', i);
           option.innerHTML = i;
           minute.appendChild(option);
         }
+
       </script>
       <span style="font-size:25px; margin:5px; vertical-align:sub">分</span>
 
