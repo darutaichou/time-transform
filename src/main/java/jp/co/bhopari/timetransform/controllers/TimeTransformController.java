@@ -68,6 +68,9 @@ public class TimeTransformController {
 			model.addAttribute("errorMessage", "エラー：左側のボックスに0から99までの値を入力してください。");
 		}
 
-			return "TimeTransform";
+		//プルダウンの値を保持するために、選択されたminuteの値をModelに格納する
+		model.addAttribute("selectedMinute", inputMinute)
+
+		return "TimeTransform";
 	}
 }
