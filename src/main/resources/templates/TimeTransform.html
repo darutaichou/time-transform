@@ -41,13 +41,23 @@
 </head>
 
 <body>
+
+  <!-- タイトル -->
   <h1 align="center">時間表記変換</h1>
+
+  <!-- アプリの説明・注意書き -->
   <div align="center" style="margin-bottom:10px">※「～時間」は0から99まで入力可能です。</div>
+
+  <!-- 入力フォーム -->
   <form action="/timetransform" method="get">
+
+    <!-- 時間をテキストボックスで、分をプルダウンで入力する -->
     <div align="center">
       <input type="text" name="hour" th:value="${hour}" style="width:60px; height:35px; font-size:20px">
       <span style="font-size:25px; margin:5px; vertical-align:sub"> 時間 </span>
       <select name="minute" id="minute" th:value="${minute}" style="width:60px; height:40px; font-size:20px"></select>
+
+      <!-- プルダウン表示のためのJavaScript -->
       <script>
         let minute = document.getElementById('minute');
         document.createElement('option')
@@ -59,31 +69,43 @@
         }
       </script>
       <span style="font-size:25px; margin:5px; vertical-align:sub">分</span>
+
+      <!-- 初期画面とエラーメッセージ表示時のスペース(矢印上部がないため) -->
     </div>
     <div th:if="${timeTransformResult == null}">
       <p align="center" style="margin: 47px 0;"></p>
     </div>
+
+    <!-- 時間表記変換後の矢印上部表示 -->
     <div th:if="${timeTransformResult != null}" class="formBalloon2"
       style="margin-right:auto; margin-left:auto; z-index: 2; display:block; padding-bottom: 20px; width:10px; margin-top:15px; height:12px;background: #101177;">
     </div>
+
+    <!-- 変換ボタン -->
     <div align="center">
       <input type="submit" value="変換" name="do" style="width:60px; height:40px; font-size:20px; ">
     </div>
-  <div th:if="${timeTransformResult != null}" align="center">
-    <div class="formBalloon" style="margin-right:auto; margin-left:auto; z-index: 2; line-height:0;">
-      <div class="formBalloonContent"></div>
-      <div class="formBalloonArrow"></div>
+
+    <!-- 時間表記変換後の矢印下部表示 -->  
+    <div th:if="${timeTransformResult != null}" align="center">
+      <div class="formBalloon" style="margin-right:auto; margin-left:auto; z-index: 2; line-height:0;">
+        <div class="formBalloonContent"></div>
+        <div class="formBalloonArrow"></div>
+      </div>
+
+      <!-- 時間表記変換結果 -->
+      <div align="center" style="width:150px; font-size:20px;">変換結果</div>
+      <div style="width:150px;">
+        <span th:text="${timeTransformResult}" style="font-size:35px"></span>
+        <span style="font-size:30px">分</span>
+      </div>
     </div>
-    <div align="center" style="width:150px; font-size:20px;">変換結果</div>
-    <div style="width:150px;">
-      <span th:text="${timeTransformResult}" style="font-size:35px"></span>
-      <span style="font-size:30px">分</span>
-    </div>
-  </div>
-  <div th:if="${timeTransformResult == null}">
+
+    <!-- エラーメッセージの表示 -->
+    <div th:if="${timeTransformResult == null}">
       <p align="center" th:text="${errorMessage}" style="color:red; font-size: 25px;"></p>
     </div>
- </form>
+  </form>
 </body>
 
 </html>
