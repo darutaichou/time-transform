@@ -60,8 +60,8 @@
       <!-- プルダウン表示のためのJavaScript -->
       <script>
         let minute = document.getElementById('minute');
-        let option = document.createElement('option')
         for (let i = 0; i <= 59; i++) {
+          let option = document.createElement('option');
           option.setAttribute('value', i);
           option.innerHTML = i;
           minute.appendChild(option);
