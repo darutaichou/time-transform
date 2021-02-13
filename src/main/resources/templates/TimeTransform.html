@@ -67,6 +67,8 @@
           option.innerHTML = i;
           minute.appendChild(option);
         }
+        let selectedIndex = option.selectedIndex;
+        document.getElementById( "minute" ).innerHTML = $selectedIndex;
       </script>
       <span style="font-size:25px; margin:5px; vertical-align:sub">分</span>
 
@@ -86,7 +88,7 @@
       <input type="submit" value="変換" name="do" style="width:60px; height:40px; font-size:20px; ">
     </div>
 
-    <!-- 時間表記変換後の矢印下部表示 -->  
+    <!-- 時間表記変換後の矢印下部表示 -->
     <div th:if="${timeTransformResult != null}" align="center">
       <div class="formBalloon" style="margin-right:auto; margin-left:auto; z-index: 2; line-height:0;">
         <div class="formBalloonContent"></div>
