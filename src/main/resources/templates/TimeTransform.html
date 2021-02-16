@@ -49,7 +49,7 @@
   <div align="center" style="margin-bottom:10px">※「～時間」は0から99まで入力可能です。</div>
 
   <!-- 入力フォーム -->
-  <form action="/timetransform" method="get">
+  <form action="/timetransform" name="time" method="get">
 
     <!-- 時間をテキストボックスで、分をプルダウンで入力する -->
     <div align="center">
@@ -68,7 +68,11 @@
           minute.appendChild(option);
         }
 
-        document.minute.innerHTML = 5;
+        function clickBtn(){
+        	const num = do.selectIndex;
+
+        	document.time.minute.selectIndex = num;
+        }
 
       </script>
       <span style="font-size:25px; margin:5px; vertical-align:sub">分</span>
@@ -86,7 +90,7 @@
 
     <!-- 変換ボタン -->
     <div align="center">
-      <input type="submit" value="変換" name="do" style="width:60px; height:40px; font-size:20px; ">
+      <input type="submit" value="変換" name="do" onclick="clickBtn()" style="width:60px; height:40px; font-size:20px; ">
     </div>
 
     <!-- 時間表記変換後の矢印下部表示 -->
