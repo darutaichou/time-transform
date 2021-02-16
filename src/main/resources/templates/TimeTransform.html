@@ -58,7 +58,7 @@
       <select name="minute" id="minute" th:value="${minute}" style="width:60px; height:40px; font-size:20px"></select>
 
       <!-- プルダウン表示のためのJavaScript -->
-      <script>
+      <script th:if="${timeTransformResult == null}" >
         let minute = document.getElementById('minute');
         document.createElement('option')
         for (let i = 0; i <= 59; i++) {
@@ -69,6 +69,24 @@
         }
 
       </script>
+
+      <script th:if="${timeTransformResult != null}" th:inline="javascript" >
+      /*<![CDATA[*/
+        let minute = document.getElementById('minute');
+        document.createElement('option')
+        for (let i = 0; i <= 59; i++) {
+          let option = document.createElement('option');
+          option.setAttribute('value', i);
+          option.innerHTML = i;
+          minute.appendChild(option);
+        }
+
+          document.time.minute.selectedIndex = /*[[${returnMinute}]]*/;
+
+          /*]]>*/
+      </script>
+
+
       <span style="font-size:25px; margin:5px; vertical-align:sub">分</span>
 
       <!-- 初期画面とエラーメッセージ表示時のスペース(矢印上部がないため) -->
@@ -84,18 +102,10 @@
 
     <!-- 変換ボタン -->
     <div align="center">
-      <input type="submit" value="変換" name="transform" onclick="clickBtn()" style="width:60px; height:40px; font-size:20px; ">
+      <input type="submit" value="変換" name="transform" style="width:60px; height:40px; font-size:20px; ">
     </div>
 
-	<script>
-	      function clickBtn(){
-	      	let num = transform.selectIndex;
-	      	console.log(num);
-
-	      	document.time.minute.selectIndex = num;
-	      }
-
-      </script>
+	</form>
 
     <!-- 時間表記変換後の矢印下部表示 -->
     <div th:if="${timeTransformResult != null}" align="center">
@@ -116,7 +126,7 @@
     <div th:if="${timeTransformResult == null}">
       <p align="center" th:text="${errorMessage}" style="color:red; font-size: 25px;"></p>
     </div>
-  </form>
+
 </body>
 
 </html>

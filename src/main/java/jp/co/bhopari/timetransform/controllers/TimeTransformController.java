@@ -68,6 +68,9 @@ public class TimeTransformController {
 			model.addAttribute("errorMessage", "エラー：左側のボックスに0から99までの値を入力してください。");
 		}
 
+		//入力値minuteをViewに送る。
+		model.addAttribute("returnMinute",inputMinute);
+
 			return "TimeTransform";
 	}
 }
