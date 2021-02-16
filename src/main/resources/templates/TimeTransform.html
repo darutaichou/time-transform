@@ -69,14 +69,6 @@
         }
 
       </script>
-      <script>
-	      function clickBtn(){
-	      	const num = do.selectIndex;
-
-	      	document.time.minute.selectIndex = num;
-	      }
-
-      </script>
       <span style="font-size:25px; margin:5px; vertical-align:sub">分</span>
 
       <!-- 初期画面とエラーメッセージ表示時のスペース(矢印上部がないため) -->
@@ -92,8 +84,18 @@
 
     <!-- 変換ボタン -->
     <div align="center">
-      <input type="submit" value="変換" name="do" onclick="clickBtn()" style="width:60px; height:40px; font-size:20px; ">
+      <input type="submit" value="変換" name="transform" onclick="clickBtn()" style="width:60px; height:40px; font-size:20px; ">
     </div>
+
+	<script>
+	      function clickBtn(){
+	      	let num = transform.selectIndex;
+	      	console.log(num);
+
+	      	document.time.minute.selectIndex = num;
+	      }
+
+      </script>
 
     <!-- 時間表記変換後の矢印下部表示 -->
     <div th:if="${timeTransformResult != null}" align="center">

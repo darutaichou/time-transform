@@ -34,7 +34,7 @@ public class TimeTransformController {
 	}
 
 
-	@GetMapping(path = SERVLET_NAME, params = "do")
+	@GetMapping(path = SERVLET_NAME, params = "transform")
 	public String transform(@ModelAttribute("hour")String inputHour, @ModelAttribute("minute")String inputMinute, Model model) {
 
 		//入力値hour入力チェック
