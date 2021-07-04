@@ -1,0 +1,132 @@
+<!doctype html>
+<html class="no-js" lang="" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <title>時間表記変換</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <style>
+    .formBalloon {
+      padding-bottom: 13px;
+      display: block;
+    }
+
+    .formBalloon .formBalloonContent {
+      width: 10px;
+      height: 25px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #101177;
+      left: 20px;
+    }
+
+    .formBalloon .formBalloonArrow {
+      border: 15px solid transparent;
+      border-top: 15px solid #101177;
+      margin-left: auto;
+      margin-right: auto;
+      height: 0;
+      width: 0;
+      z-index: 1;
+    }
+
+    .balloonMsg {
+      padding-bottom: 1px;
+      display: block;
+      line-height: 1px;
+      text-indent: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- タイトル -->
+  <h1 align="center">時間表記変換</h1>
+
+  <!-- アプリの説明・注意書き -->
+  <div align="center" style="margin-bottom:10px">※「～時間」は0から99まで入力可能です。</div>
+
+  <!-- 入力フォーム -->
+  <form action="/timetransform" name="time" method="get">
+
+    <!-- 時間をテキストボックスで、分をプルダウンで入力する -->
+    <div align="center">
+      <input type="text" name="hour" th:value="${hour}" style="width:60px; height:35px; font-size:20px">
+      <span style="font-size:25px; margin:5px; vertical-align:sub"> 時間 </span>
+      <select name="minute" id="minute" th:value="${minute}" style="width:60px; height:40px; font-size:20px"></select>
+
+      <!-- プルダウン表示のためのJavaScript -->
+      <script th:if="${timeTransformResult == null}" >
+        let minute = document.getElementById('minute');
+        document.createElement('option')
+        for (let i = 0; i <= 59; i++) {
+          let option = document.createElement('option');
+          option.setAttribute('value', i);
+          option.innerHTML = i;
+          minute.appendChild(option);
+        }
+
+      </script>
+
+      <script th:if="${timeTransformResult != null}" th:inline="javascript" >
+      /*<![CDATA[*/
+        let minute = document.getElementById('minute');
+        document.createElement('option')
+        for (let i = 0; i <= 59; i++) {
+          let option = document.createElement('option');
+          option.setAttribute('value', i);
+          option.innerHTML = i;
+          minute.appendChild(option);
+        }
+
+          document.time.minute.selectedIndex = /*[[${returnMinute}]]*/;
+
+          /*]]>*/
+      </script>
+
+
+      <span style="font-size:25px; margin:5px; vertical-align:sub">分</span>
+
+      <!-- 初期画面とエラーメッセージ表示時のスペース(矢印上部がないため) -->
+    </div>
+    <div th:if="${timeTransformResult == null}">
+      <p align="center" style="margin: 47px 0;"></p>
+    </div>
+
+    <!-- 時間表記変換後の矢印上部表示 -->
+    <div th:if="${timeTransformResult != null}" class="formBalloon2"
+      style="margin-right:auto; margin-left:auto; z-index: 2; display:block; padding-bottom: 20px; width:10px; margin-top:15px; height:12px;background: #101177;">
+    </div>
+
+    <!-- 変換ボタン -->
+    <div align="center">
+      <input type="submit" value="変換" name="transform" style="width:60px; height:40px; font-size:20px; ">
+    </div>
+
+	</form>
+
+    <!-- 時間表記変換後の矢印下部表示 -->
+    <div th:if="${timeTransformResult != null}" align="center">
+      <div class="formBalloon" style="margin-right:auto; margin-left:auto; z-index: 2; line-height:0;">
+        <div class="formBalloonContent"></div>
+        <div class="formBalloonArrow"></div>
+      </div>
+
+      <!-- 時間表記変換結果 -->
+      <div align="center" style="width:150px; font-size:20px;">変換結果</div>
+      <div style="width:150px;">
+        <span th:text="${timeTransformResult}" style="font-size:35px"></span>
+        <span style="font-size:30px">分</span>
+      </div>
+    </div>
+
+    <!-- エラーメッセージの表示 -->
+    <div th:if="${timeTransformResult == null}">
+      <p align="center" th:text="${errorMessage}" style="color:red; font-size: 25px;"></p>
+    </div>
+
+</body>
+
+</html>
